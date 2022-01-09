@@ -5,7 +5,7 @@ const DbService = require('../FetchData/Fetch');
 //Create....
 
 router.post('/insert', (req, res) => {
-
+    const { name } = req.body;
 })
 
 

@@ -22,6 +22,22 @@ class DbService {
             console.log(error);
         }
     }
+
+
+
+    async insertNewName(name) {
+        try {
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+
+
+
+
 }
 
 
