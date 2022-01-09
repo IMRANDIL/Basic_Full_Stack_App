@@ -4,8 +4,16 @@ const DbService = require('../FetchData/Fetch');
 
 //Create....
 
-router.post('/insert', (req, res) => {
-    const { name } = req.body;
+router.post('/insert', async (req, res) => {
+    try {
+        const { name } = req.body;
+        const db = await DbService.getDbServiceInstance();
+        const result = await db.insertNewName(name);
+        res.json({ success: true })
+    } catch (error) {
+        console.log(error);
+    }
+
 })
 
 

@@ -27,7 +27,17 @@ class DbService {
 
     async insertNewName(name) {
         try {
+            const dateAdded = new Date();
 
+            const insertId = await new Promise((resolve, reject) => {
+                const query = `INSERT INTO people (name,date_added) VALUES (?, ?);`;
+                connection.query(query, [name, dateAdded], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.insertId);
+                })
+            });
+            console.log(insertId);
+            return insertId;
         } catch (error) {
             console.log(error);
         }

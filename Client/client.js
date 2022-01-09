@@ -14,10 +14,17 @@ const loadHtmlTable = (data) => {
     const table = document.querySelector('table tbody');
 
 
-
     if (data.length === 0) {
-        table.innerHTML = `<tr><td class='no-data' colspan='5'>No Data</td></tr>`
+        table.innerHTML = `<tr><td class='no-data' colspan='5'>No Data</td></tr>`;
+        return;
     }
+    let tableHtml = '';
+
+    data.forEach(({ id, name, date_added }) => {
+        tableHtml += `<tr><td>${id}</td><td>${name}</td><td>${new Date(date_added).toLocaleString()}</td><td><button class="delete-btn" data-id=${id}>Delete</button></td><td><button class="edit-btn" data-id=${id}>Edit</button></td></tr>`
+
+    });
+    table.innerHTML = tableHtml
 }
 
 
