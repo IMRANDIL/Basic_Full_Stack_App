@@ -69,4 +69,26 @@ const fetchData = async () => {
 
 const insertRowIntoTable = (data) => {
 
+    const table = document.querySelector('table tbody');
+    const isTableData = table.querySelector('.no-data')
+
+    let tableHtml = '<tr>';
+
+    for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+            if (key === 'dateAdded') {
+                data[key] = new Date(data[key]).toLocaleString();
+            }
+            tableHtml += `<td>${data[key]}</td>`
+        }
+    }
+    tableHtml += `<td><button class="delete-btn" data-id=${data.id}>Delete</button></td><td><button class="edit-btn" data-id=${data.id}>Edit</button></td>`
+    tableHtml += `</tr>`
+    if (isTableData) {
+        return table.innerHTML = tableHtml;
+    }
+    else {
+        const newRow = table.insertRow();
+        newRow.innerHTML = tableHtml;
+    }
 }

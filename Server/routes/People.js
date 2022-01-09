@@ -9,7 +9,7 @@ router.post('/insert', async (req, res) => {
         const { name } = req.body;
         const db = await DbService.getDbServiceInstance();
         const result = await db.insertNewName(name);
-        res.json({ success: true })
+        res.json({ data: result })
     } catch (error) {
         console.log(error);
     }

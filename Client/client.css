@@ -7,14 +7,17 @@ main{
 
 table{
     margin: 50px auto;
+    
+  
 }
 
-table,th,thead{
+table,tr,th,td{
 border-collapse: collapse;
 border: 1px solid black;
 }
 
-th,thead{
+tr,th,td{
     padding: 5px;
 }
+
 
