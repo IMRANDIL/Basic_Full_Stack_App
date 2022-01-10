@@ -42,7 +42,19 @@ router.get('/getAll', async (req, res) => {
 
 //Delete.....
 
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const db = await DbService.getDbServiceInstance();
+        const result = await db.deleteRowById(id);
+        res.json({ success: true })
 
+    } catch (error) {
+        console.log(error);
+    }
+
+
+})
 
 
 

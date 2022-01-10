@@ -47,6 +47,27 @@ class DbService {
         }
     }
 
+    async deleteRowById(id) {
+        try {
+            id = parseInt(id, 10);
+
+            const response = await new Promise((resolve, reject) => {
+                const query = `DELETE FROM people WHERE id = ?;`;
+                connection.query(query, [id], (err, result) => {
+                    if (err) reject(new Error(err.message));
+
+                    resolve(result.affectedRows);
+                })
+            });
+
+            console.log(response);
+            return response === 1 ? true : false;
+
+        } catch (error) {
+
+        }
+    }
+
 
 
 

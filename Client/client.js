@@ -30,6 +30,35 @@ const loadHtmlTable = (data) => {
 
 const addBtn = document.querySelector('#add-btn');
 
+
+
+document.querySelector('table tbody').addEventListener('click', (e) => {
+    if (e.target.className === 'delete-btn') {
+        deleteById(e.target.dataset.id);
+    }
+});
+
+
+const deleteById = async (id) => {
+    const data = await fetch(`http://localhost:5000/delete/${id}`, {
+        method: 'DELETE'
+    });
+    const response = await data.json();
+    console.log(response);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 addBtn.addEventListener('click', async () => {
 
     try {
