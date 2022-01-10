@@ -93,6 +93,23 @@ class DbService {
     }
 
 
+    async searchNameByName(name) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = `SELECT * FROM people WHERE name = ?;`;
+                connection.query(query, [name], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
 
 
 

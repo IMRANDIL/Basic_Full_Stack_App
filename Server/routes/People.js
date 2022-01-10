@@ -32,7 +32,30 @@ router.get('/getAll', async (req, res) => {
 
 
 
+});
+
+
+
+//read one....
+
+
+router.get('/search/:name', async (req, res) => {
+    try {
+        const { name } = req.params;
+        const db = await DbService.getDbServiceInstance();
+        const result = await db.searchNameByName(name);
+        res.json({ data: result })
+
+
+    } catch (error) {
+        console.log(error);
+    }
+
 })
+
+
+
+
 
 
 //Update....

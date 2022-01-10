@@ -34,6 +34,27 @@ const addBtn = document.querySelector('#add-btn');
 
 const updateBtn = document.querySelector('#update-btn');
 
+const searchBtn = document.querySelector('#search-btn');
+
+const searchInput = document.querySelector('#search-input');
+
+
+
+
+
+searchBtn.addEventListener('click', async () => {
+    const name = searchInput.value;
+    const data = await fetch(`http://localhost:5000/search/${name}`);
+    const response = await data.json();
+    loadHtmlTable(response['data']);
+
+})
+
+
+
+
+
+
 
 
 
