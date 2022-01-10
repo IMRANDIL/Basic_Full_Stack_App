@@ -37,6 +37,25 @@ router.get('/getAll', async (req, res) => {
 
 //Update....
 
+router.patch('/update', async (req, res) => {
+    try {
+        const { id, name } = req.body;
+        const db = await DbService.getDbServiceInstance();
+        const result = await db.updateNameById(id, name);
+        res.json({ data: result })
+
+
+
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+
+
+
+
+
 
 
 
@@ -47,7 +66,7 @@ router.delete('/delete/:id', async (req, res) => {
         const { id } = req.params;
         const db = await DbService.getDbServiceInstance();
         const result = await db.deleteRowById(id);
-        res.json({ success: true })
+        res.json({ success: result })
 
     } catch (error) {
         console.log(error);

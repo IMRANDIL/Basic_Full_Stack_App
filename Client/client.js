@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
     fetchData();
@@ -30,13 +32,59 @@ const loadHtmlTable = (data) => {
 
 const addBtn = document.querySelector('#add-btn');
 
+const updateBtn = document.querySelector('#update-btn');
+
+
+
+
 
 
 document.querySelector('table tbody').addEventListener('click', (e) => {
     if (e.target.className === 'delete-btn') {
         deleteById(e.target.dataset.id);
     }
+
+    if (e.target.className === 'edit-btn') {
+        editRowById(e.target.dataset.id);
+    }
+
+
 });
+
+
+
+
+
+const editRowById = (id) => {
+    const updateSection = document.querySelector('#update');
+    updateSection.hidden = false;
+    document.querySelector('#update-btn').dataset.id = id;
+
+}
+
+
+updateBtn.addEventListener('click', async () => {
+    const nameInput = document.querySelector('#update-name-input');
+    const data = await fetch('http://localhost:5000/update', {
+        method: 'PATCH',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: document.querySelector('#update-btn').dataset.id,
+            name: nameInput.value
+        })
+    });
+    const response = await data.json();
+    console.log(response);
+    if ({ data: true }) {
+        location.reload();
+    }
+})
+
+
+
+
 
 
 const deleteById = async (id) => {
@@ -44,7 +92,9 @@ const deleteById = async (id) => {
         method: 'DELETE'
     });
     const response = await data.json();
-    console.log(response);
+    if (response.success) {
+        location.reload()
+    }
 }
 
 
